@@ -10,14 +10,14 @@
 * {margin:0; padding:0; box-sizing:border-box;}
 body {font-family:'Poppins', sans-serif; line-height:1.7; color:#2c3e50;}
 .container {max-width:1200px; margin:0 auto; padding:0 20px;}
-header {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:white; padding:1rem 0; position:fixed; width:100%; top:0; z-index:1000; box-shadow:0 2px 20px rgba(139,69,19,0.3); transition:all 0.3s;}
+header {background:linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); color:white; padding:1rem 0; position:fixed; width:100%; top:0; z-index:1000; box-shadow:0 2px 20px rgba(212,175,55,0.3); transition:all 0.3s;}
 nav {display:flex; justify-content:space-between; align-items:center;}
 .logo {font-size:1.8rem; font-weight:700; letter-spacing:1px;}
 .nav-links {display:flex; list-style:none; gap:2.5rem;}
 .nav-links a {color:white; text-decoration:none; font-weight:500; transition:all 0.3s; position:relative;}
-.nav-links a::after {content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:#90EE90; transition:all 0.3s;}
+.nav-links a::after {content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:#FFD700; transition:all 0.3s;}
 .nav-links a:hover::after {width:100%;}
-.nav-links a:hover {color:#90EE90;}
+.nav-links a:hover {color:#FFD700;}
 .hamburger {display:none; font-size:1.8rem; cursor:pointer; color:white;}
 
 /* Hero Slider */
@@ -28,39 +28,39 @@ nav {display:flex; justify-content:space-between; align-items:center;}
 .hero-content {position:relative; z-index:2; max-width:800px; padding:0 20px;}
 .hero h1 {font-size:4rem; font-weight:700; margin-bottom:1.5rem; text-shadow:2px 2px 4px rgba(0,0,0,0.5);}
 .hero p {font-size:1.4rem; margin-bottom:3rem; font-weight:300; text-shadow:1px 1px 2px rgba(0,0,0,0.5);}
-.cta-button {background:linear-gradient(45deg, #228B22, #32CD32); color:white; padding:18px 40px; border-radius:50px; text-decoration:none; font-weight:600; font-size:1.1rem; transition:all 0.4s; box-shadow:0 10px 30px rgba(34,139,34,0.4); display:inline-block; letter-spacing:1px;}
-.cta-button:hover {transform:translateY(-3px); box-shadow:0 15px 40px rgba(34,139,34,0.6);}
+.cta-button {background:linear-gradient(45deg, #DAA520, #FFD700); color:#2c3e50; padding:18px 40px; border-radius:50px; text-decoration:none; font-weight:600; font-size:1.1rem; transition:all 0.4s; box-shadow:0 10px 30px rgba(218,165,32,0.4); display:inline-block; letter-spacing:1px;}
+.cta-button:hover {transform:translateY(-3px); box-shadow:0 15px 40px rgba(255,215,0,0.6);}
 
 section {padding:100px 0;}
-.section-title {text-align:center; font-size:2.5rem; font-weight:700; margin-bottom:4rem; color:#8B4513; position:relative;}
-.section-title::after {content:''; display:block; width:80px; height:4px; background:linear-gradient(45deg, #228B22, #32CD32); margin:20px auto 0;}
+.section-title {text-align:center; font-size:2.5rem; font-weight:700; margin-bottom:4rem; color:#D4AF37; position:relative;}
+.section-title::after {content:''; display:block; width:80px; height:4px; background:linear-gradient(45deg, #DAA520, #FFD700); margin:20px auto 0;}
 .products-grid, .deals-grid, .benefits-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2.5rem;}
 .product-card, .deal-card, .testimonial, .benefit-item {background:white; padding:2.5rem 2rem; border-radius:20px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.08); transition:all 0.4s; border:1px solid rgba(255,255,255,0.2);}
 .product-card:hover, .deal-card:hover {transform:translateY(-10px); box-shadow:0 30px 80px rgba(0,0,0,0.15);}
-.product-image {width:110px; height:110px; background:linear-gradient(45deg, #228B22, #32CD32); border-radius:50%; margin:0 auto 1.5rem; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:white; box-shadow:0 10px 30px rgba(34,139,34,0.3);}
-.price {font-size:1.5rem; font-weight:700; color:#8B4513; margin:1.5rem 0;}
-.buy-btn {background:linear-gradient(45deg, #8B4513, #A0522D); color:white; padding:15px 30px; border:none; border-radius:30px; font-size:1.1rem; font-weight:600; cursor:pointer; width:100%; transition:all 0.3s; letter-spacing:1px;}
-.buy-btn:hover:not(.out-of-stock) {background:linear-gradient(45deg, #A0522D, #D2691E); transform:translateY(-2px);}
+.product-image {width:110px; height:110px; background:linear-gradient(45deg, #DAA520, #FFD700); border-radius:50%; margin:0 auto 1.5rem; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:#2c3e50; box-shadow:0 10px 30px rgba(218,165,32,0.3);}
+.price {font-size:1.5rem; font-weight:700; color:#D4AF37; margin:1.5rem 0;}
+.buy-btn {background:linear-gradient(45deg, #D4AF37, #B8860B); color:white; padding:15px 30px; border:none; border-radius:30px; font-size:1.1rem; font-weight:600; cursor:pointer; width:100%; transition:all 0.3s; letter-spacing:1px;}
+.buy-btn:hover:not(.out-of-stock) {background:linear-gradient(45deg, #B8860B, #DAA520); transform:translateY(-2px);}
 .deal-badge {display:inline-block; background:linear-gradient(45deg, #FF6B35, #FF8C42); color:white; padding:8px 16px; border-radius:25px; font-size:0.9rem; font-weight:600; margin-bottom:1rem; box-shadow:0 5px 15px rgba(255,107,53,0.4);}
-.free-delivery {background:linear-gradient(45deg, #228B22, #32CD32)!important; box-shadow:0 5px 15px rgba(34,139,34,0.4);}
+.free-delivery {background:linear-gradient(45deg, #DAA520, #FFD700)!important; color:#2c3e50 !important; box-shadow:0 5px 15px rgba(218,165,32,0.4);}
 .out-of-stock {background:#bdc3c7 !important; color:#7f8c8d !important; cursor:not-allowed !important; box-shadow:none !important;}
-.benefit-icon {width:80px; height:80px; background:linear-gradient(45deg, #32CD32, #228B22); border-radius:50%; margin:0 auto 1.5rem; display:flex; align-items:center; justify-content:center; font-size:2rem; color:white; box-shadow:0 15px 40px rgba(50,205,50,0.3);}
+.benefit-icon {width:80px; height:80px; background:linear-gradient(45deg, #FFD700, #DAA520); border-radius:50%; margin:0 auto 1.5rem; display:flex; align-items:center; justify-content:center; font-size:2rem; color:#2c3e50; box-shadow:0 15px 40px rgba(255,215,0,0.3);}
 .stars {color:#FFD700; margin-bottom:1rem; font-size:1.2rem;}
-.customer-name {font-weight:600; color:#8B4513; margin-top:1rem; font-size:1.1rem;}
+.customer-name {font-weight:600; color:#D4AF37; margin-top:1rem; font-size:1.1rem;}
 .about-text {font-size:1.1rem; max-width:800px; margin:0 auto; text-align:center; color:#5a6c7d; line-height:1.8;}
 .contact-form {max-width:700px; margin:0 auto;}
 .form-group {margin-bottom:1.5rem;}
 .form-group input, .form-group textarea, select {width:100%; padding:18px; border:2px solid #e9ecef; border-radius:15px; font-family:'Poppins', sans-serif; font-size:1rem; transition:all 0.3s;}
-.form-group input:focus, .form-group textarea:focus, select:focus {outline:none; border-color:#228B22; box-shadow:0 0 0 3px rgba(34,139,34,0.1);}
-.submit-btn {background:linear-gradient(45deg, #228B22, #32CD32); color:white; padding:18px 40px; border:none; border-radius:30px; cursor:pointer; width:100%; font-size:1.1rem; font-weight:600; transition:all 0.3s; letter-spacing:1px;}
-.submit-btn:hover {transform:translateY(-2px); box-shadow:0 15px 40px rgba(34,139,34,0.4);}
-footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:white; text-align:center; padding:3rem 0; font-size:1.1rem;}
+.form-group input:focus, .form-group textarea:focus, select:focus {outline:none; border-color:#DAA520; box-shadow:0 0 0 3px rgba(218,165,32,0.1);}
+.submit-btn {background:linear-gradient(45deg, #DAA520, #FFD700); color:#2c3e50; padding:18px 40px; border:none; border-radius:30px; cursor:pointer; width:100%; font-size:1.1rem; font-weight:600; transition:all 0.3s; letter-spacing:1px;}
+.submit-btn:hover {transform:translateY(-2px); box-shadow:0 15px 40px rgba(255,215,0,0.4);}
+footer {background:linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); color:white; text-align:center; padding:3rem 0; font-size:1.1rem;}
 @keyframes fadeUp {to{opacity:1; transform:translateY(0);}}
 
 /* Responsive */
 @media(max-width:768px){
 .logo {font-size:1.5rem;}
-.nav-links {display:none; flex-direction:column; background:linear-gradient(135deg, #8B4513, #A0522D); position:absolute; top:100%; right:0; width:250px; padding:2rem; box-shadow:0 10px 30px rgba(0,0,0,0.2); border-radius:0 0 20px 20px;}
+.nav-links {display:none; flex-direction:column; background:linear-gradient(135deg, #D4AF37, #B8860B); position:absolute; top:100%; right:0; width:250px; padding:2rem; box-shadow:0 10px 30px rgba(0,0,0,0.2); border-radius:0 0 20px 20px;}
 .nav-links.active {display:flex;}
 .hamburger {display:block;}
 .hero h1 {font-size:2.5rem;}
@@ -234,4 +234,4 @@ setInterval(nextSlide,6000);
 // Price updates & WhatsApp
 const oilPrices={1:1200,2:2200,3:3500,0.5:400}; const serumPrices={1:1600,2:3100,3:4500};
 function updatePrice(type){if(type==='oil'){const qty=document.getElementById('oil-qty').value; document.getElementById('oil-price').innerText=oilPrices[qty]+' PKR';}else{const qty=document.getElementById('serum-qty').value; document.getElementById('serum-price').innerText=serumPrices[qty]+' PKR';}}
-function buyNow(product){let qty, price, text;if(product==='Hair Oil'){qty=document.getElementById('oil-qty').value; price=oilPrices[qty]; text=`I want ${qty} ${product} ${(qty==0.5?'50ml':'150ml')} for ${price} PKR`;}else{qty=document.getElementById('serum-qty').value; price=serumPrices[qty]; text
+function buyNow(product){let qty, price, text;if(product==='Hair Oil'){qty=document.getElementById('oil-qty').value; price=oilPrices[qty]; text=`I want ${qty} ${product} ${(qty==0.5?'50ml':'150ml')} for ${price} PKR`;}else{qty=document.getElementById('serum-qty').value; price=serumPrices[qty];
