@@ -162,4 +162,48 @@ footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:whit
 <span class="deal-badge free-delivery">Free Delivery</span>
 <h3>2 Bottles Hair Serum 150ml</h3>
 <div class="price">3100 PKR</div>
-<button class="buy-btn" onclick="window.open('
+<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 2 bottles of Hair Serum 150ml')">Buy Now</button>
+</div>
+</div>
+</div>
+</section>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const oilPrices = {1: 1200, 2: 2200, 3: 3500, 0.5: 400};
+const serumPrices = {1: 1600, 2: 3100, 3: 4500};
+
+function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+}
+
+setInterval(nextSlide, 5000);
+
+function toggleMenu() {
+    const navLinks = document.getElementById('nav-links');
+    navLinks.classList.toggle('active');
+}
+
+function updatePrice(type) {
+    const qtySelect = document.getElementById(type + '-qty');
+    const priceElement = document.getElementById(type + '-price');
+    const qty = qtySelect.value;
+    const prices = type === 'oil' ? oilPrices : serumPrices;
+    priceElement.textContent = prices[qty] + ' PKR';
+}
+
+function buyNow(product) {
+    const qtySelect = document.getElementById('oil-qty');
+    const qty = qtySelect.value;
+    const prices = oilPrices;
+    const price = prices[qty];
+    const text = `I want ${qty} ${product} (${price} PKR)`;
+    window.open(`https://wa.me/923272450324?text=${encodeURIComponent(text)}`);
+}
+</script>
+
+</body>
+</html>
