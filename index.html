@@ -99,14 +99,14 @@ function updatePrice(product) {
 }
 
 function buyNow(productName) {
-    // Check if it's serum (out of stock)
+    // Only show out of stock message for Serum products
     if (productName.includes('Serum')) {
         alert('Hair Serum is currently out of stock! Please choose Hair Oil instead.');
         return;
     }
     
-    // For Hair Oil - get quantity from dropdown
-    if (productName.includes('Hair Oil')) {
+    // For individual Hair Oil order - get quantity from dropdown
+    if (productName === 'Hair Oil') {
         const qtySelect = document.getElementById('oil-qty');
         const qty = qtySelect.value;
         const price = oilPrices[qty];
