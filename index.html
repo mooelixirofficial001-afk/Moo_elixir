@@ -76,6 +76,7 @@ const oilPrices = {
 };
 
 const serumPrices = {
+    '0.5': 1500,
     '1': 1600,
     '2': 3100,
     '3': 4500
@@ -118,7 +119,7 @@ function buyNow(productName) {
     }
     
     // For Deals (fixed quantities)
-    let message = `Hi! I want to order:\n${productName}\nFree Delivery\nPlease confirm availability and delivery details.`;
+    let message = `Hi! I want to order:\n${productName}\nPlease confirm availability and delivery details.`;
     window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
 }
 </script>
@@ -178,9 +179,10 @@ function buyNow(productName) {
 <!-- HAIR SERUM - OUT OF STOCK -->
 <div class="product-card">
 <div class="product-image" style="background:linear-gradient(45deg, #bdc3c7, #95a5a6); box-shadow:0 5px 15px rgba(189,195,199,0.3);">🌟</div>
-<h3>Hair Serum 150ml <span style="color:#e74c3c; font-size:0.9rem; font-weight:600;">❌ Out of Stock</span></h3>
-<div class="price" id="serum-price" style="color:#bdc3c7;">1600 PKR</div>
+<h3>Hair Serum 50ml <span style="color:#e74c3c; font-size:0.9rem; font-weight:600;">❌ Out of Stock</span></h3>
+<div class="price" id="serum-price" style="color:#bdc3c7;">1500 PKR</div>
 <select id="serum-qty" disabled>
+<option value="0.5">50 ML Hair Serum (1500 PKR)</option>
 <option value="1">1 Bottle 150ml (1600 PKR)</option>
 <option value="2">2 Bottles 150ml (3100 PKR)</option>
 <option value="3">3 Bottles 150ml (4500 PKR)</option>
@@ -208,13 +210,19 @@ function buyNow(productName) {
 <div class="price">3500 PKR</div>
 <button class="buy-btn" onclick="buyNow('Hair Oil (Deal - 3 Bottles)')">🛒 Buy Now</button>
 </div>
+<div class="deal-card">
+<span class="deal-badge free-delivery">Free Delivery</span>
+<h3>2 x 50ml Hair Oil Bottles</h3>
+<div class="price">750 PKR</div>
+<button class="buy-btn" onclick="buyNow('Hair Oil (Deal - 2 x 50ml Bottles)')">🛒 Buy Now</button>
+</div>
 </div>
 </div>
 </section>
 
 <footer>
 <div class="container">
-<p>&copy; 2024 Moo Elixir. All rights reserved. | <a href="tel:+923272450324" style="color:#90EE90;">📞 0327-2450324</a> | Free Delivery All Over Pakistan</p>
+<p>&copy; 2024 Moo Elixir. All rights reserved. | <a href="tel:+923272450324" style="color:#90EE90;">📞 0327-2450324</a></p>
 </div>
 </footer>
 
