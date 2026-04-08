@@ -34,8 +34,8 @@ nav {display:flex; justify-content:space-between; align-items:center;}
 section {padding:100px 0;}
 .section-title {text-align:center; font-size:2.5rem; font-weight:700; margin-bottom:4rem; color:#8B4513; position:relative;}
 .section-title::after {content:''; display:block; width:80px; height:4px; background:linear-gradient(45deg, #228B22, #32CD32); margin:20px auto 0;}
-.products-grid, .deals-grid, .benefits-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2.5rem;}
-.product-card, .deal-card, .testimonial, .benefit-item {background:white; padding:2.5rem 2rem; border-radius:20px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.08); transition:all 0.4s; border:1px solid rgba(255,255,255,0.2);}
+.products-grid, .deals-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2.5rem;}
+.product-card, .deal-card {background:white; padding:2.5rem 2rem; border-radius:20px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.08); transition:all 0.4s; border:1px solid rgba(255,255,255,0.2);}
 .product-card:hover, .deal-card:hover {transform:translateY(-10px); box-shadow:0 30px 80px rgba(0,0,0,0.15);}
 .product-image {width:110px; height:110px; background:linear-gradient(45deg, #228B22, #32CD32); border-radius:50%; margin:0 auto 1.5rem; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:white; box-shadow:0 10px 30px rgba(34,139,34,0.3);}
 .price {font-size:1.5rem; font-weight:700; color:#8B4513; margin:1.5rem 0;}
@@ -44,18 +44,8 @@ section {padding:100px 0;}
 .deal-badge {display:inline-block; background:linear-gradient(45deg, #FF6B35, #FF8C42); color:white; padding:8px 16px; border-radius:25px; font-size:0.9rem; font-weight:600; margin-bottom:1rem; box-shadow:0 5px 15px rgba(255,107,53,0.4);}
 .free-delivery {background:linear-gradient(45deg, #228B22, #32CD32)!important; box-shadow:0 5px 15px rgba(34,139,34,0.4);}
 .out-of-stock {background:#bdc3c7 !important; color:#7f8c8d !important; cursor:not-allowed !important; box-shadow:none !important;}
-.benefit-icon {width:80px; height:80px; background:linear-gradient(45deg, #32CD32, #228B22); border-radius:50%; margin:0 auto 1.5rem; display:flex; align-items:center; justify-content:center; font-size:2rem; color:white; box-shadow:0 15px 40px rgba(50,205,50,0.3);}
-.stars {color:#FFD700; margin-bottom:1rem; font-size:1.2rem;}
-.customer-name {font-weight:600; color:#8B4513; margin-top:1rem; font-size:1.1rem;}
 .about-text {font-size:1.1rem; max-width:800px; margin:0 auto; text-align:center; color:#5a6c7d; line-height:1.8;}
-.contact-form {max-width:700px; margin:0 auto;}
-.form-group {margin-bottom:1.5rem;}
-.form-group input, .form-group textarea, select {width:100%; padding:18px; border:2px solid #e9ecef; border-radius:15px; font-family:'Poppins', sans-serif; font-size:1rem; transition:all 0.3s;}
-.form-group input:focus, .form-group textarea:focus, select:focus {outline:none; border-color:#228B22; box-shadow:0 0 0 3px rgba(34,139,34,0.1);}
-.submit-btn {background:linear-gradient(45deg, #228B22, #32CD32); color:white; padding:18px 40px; border:none; border-radius:30px; cursor:pointer; width:100%; font-size:1.1rem; font-weight:600; transition:all 0.3s; letter-spacing:1px;}
-.submit-btn:hover {transform:translateY(-2px); box-shadow:0 15px 40px rgba(34,139,34,0.4);}
 footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:white; text-align:center; padding:3rem 0; font-size:1.1rem;}
-@keyframes fadeUp {to{opacity:1; transform:translateY(0);}}
 
 /* Responsive */
 @media(max-width:768px){
@@ -109,18 +99,26 @@ function updatePrice(product) {
 }
 
 function buyNow(productName) {
-    const qtySelect = document.getElementById(productName.toLowerCase().replace(' ', '-') + '-qty');
-    if (!qtySelect || qtySelect.disabled) {
-        alert('This product is out of stock!');
+    // Check if it's serum (out of stock)
+    if (productName.includes('Serum')) {
+        alert('Hair Serum is currently out of stock! Please choose Hair Oil instead.');
         return;
     }
     
-    const qty = qtySelect.value;
-    const price = productName.includes('Oil') ? oilPrices[qty] : serumPrices[qty];
-    const qtyText = qty === '0.5' ? '50ml' : qty + ' bottle' + (qty > 1 ? 's' : '');
+    // For Hair Oil - get quantity from dropdown
+    if (productName.includes('Hair Oil')) {
+        const qtySelect = document.getElementById('oil-qty');
+        const qty = qtySelect.value;
+        const price = oilPrices[qty];
+        const qtyText = qty === '0.5' ? '50ml' : qty + ' bottle' + (qty > 1 ? 's' : '');
+        
+        const message = `Hi! I want to order:\nHair Oil 150ml (${qtyText})\nPrice: ${price} PKR\nPlease confirm availability and delivery details.`;
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        return;
+    }
     
-    const message = `Hi! I want to order:\n${productName} (${qtyText})\nPrice: ${price} PKR\nPlease confirm availability and delivery details.`;
-    
+    // For Deals (fixed quantities)
+    let message = `Hi! I want to order:\n${productName}\nFree Delivery\nPlease confirm availability and delivery details.`;
     window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
 }
 </script>
@@ -134,8 +132,6 @@ function buyNow(productName) {
 <li><a href="#about">About</a></li>
 <li><a href="#products">Products</a></li>
 <li><a href="#deals">Deals</a></li>
-<li><a href="#benefits">Benefits</a></li>
-<li><a href="#reviews">Reviews</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
@@ -143,7 +139,7 @@ function buyNow(productName) {
 </header>
 
 <section class="hero">
-<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1605902711622-cfb43c44356f?auto=format&fit=crop&w=1920&q=80');"></div>
+<div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1605902711622-cfb43c44356f?auto=format&fit=crop&w=1920&q=80');"></div>
 <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1616628180359-06e8b2c26c38?auto=format&fit=crop&w=1920&q=80');"></div>
 <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1594159646218-7d0432d2b609?auto=format&fit=crop&w=1920&q=80');"></div>
 <div class="hero-content">
@@ -156,7 +152,7 @@ function buyNow(productName) {
 <section id="about">
 <div class="container">
 <h2 class="section-title">About Us</h2>
-<p class="about-text">Moo Elixir offers premium organic hair oils and serums crafted from natural plant-based ingredients. Promotes hair growth, strengthens roots, adds shine, and restores natural beauty.</p>
+<p class="about-text">Moo Elixir offers premium organic hair oils crafted from natural plant-based ingredients. Promotes hair growth, strengthens roots, adds shine, and restores natural beauty. <strong>Hair Serum is temporarily out of stock!</strong></p>
 </div>
 </section>
 
@@ -165,9 +161,10 @@ function buyNow(productName) {
 <h2 class="section-title">Our Products</h2>
 <div class="products-grid">
 
+<!-- HAIR OIL - FULLY AVAILABLE -->
 <div class="product-card">
 <div class="product-image">💧</div>
-<h3>Hair Oil (150ml)</h3>
+<h3>Hair Oil (150ml) <span style="color:#228B22; font-size:0.9rem; font-weight:600;">✅ In Stock</span></h3>
 <div class="price" id="oil-price">1200 PKR</div>
 <select id="oil-qty" onchange="updatePrice('oil')">
 <option value="1">1 Bottle 150ml (1200 PKR)</option>
@@ -175,19 +172,20 @@ function buyNow(productName) {
 <option value="3">3 Bottles 150ml (3500 PKR)</option>
 <option value="0.5">50 ML Hair Oil (400 PKR)</option>
 </select>
-<button class="buy-btn" onclick="buyNow('Hair Oil')">Buy Now</button>
+<button class="buy-btn" onclick="buyNow('Hair Oil')">🛒 Buy Now</button>
 </div>
 
+<!-- HAIR SERUM - OUT OF STOCK -->
 <div class="product-card">
-<div class="product-image">🌟</div>
-<h3>Hair Serum 150ml <span style="color:#bdc3c7; font-size:0.9rem; font-weight:500;">(Out of Stock)</span></h3>
-<div class="price" id="serum-price">1600 PKR</div>
-<select id="serum-qty" onchange="updatePrice('serum')" disabled>
+<div class="product-image" style="background:linear-gradient(45deg, #bdc3c7, #95a5a6); box-shadow:0 5px 15px rgba(189,195,199,0.3);">🌟</div>
+<h3>Hair Serum 150ml <span style="color:#e74c3c; font-size:0.9rem; font-weight:600;">❌ Out of Stock</span></h3>
+<div class="price" id="serum-price" style="color:#bdc3c7;">1600 PKR</div>
+<select id="serum-qty" disabled>
 <option value="1">1 Bottle 150ml (1600 PKR)</option>
 <option value="2">2 Bottles 150ml (3100 PKR)</option>
 <option value="3">3 Bottles 150ml (4500 PKR)</option>
 </select>
-<button class="buy-btn out-of-stock" onclick="buyNow('Hair Serum')" disabled>Out of Stock</button>
+<button class="buy-btn out-of-stock" disabled>Out of Stock</button>
 </div>
 
 </div>
@@ -196,25 +194,19 @@ function buyNow(productName) {
 
 <section id="deals">
 <div class="container">
-<h2 class="section-title">Special Deals</h2>
+<h2 class="section-title">Special Deals ✅ All Available</h2>
 <div class="deals-grid">
 <div class="deal-card">
 <span class="deal-badge free-delivery">Free Delivery</span>
 <h3>2 Bottles Hair Oil 150ml</h3>
 <div class="price">2200 PKR</div>
-<button class="buy-btn" onclick="buyNow('Hair Oil (Deal - 2 Bottles)')">Buy Now</button>
+<button class="buy-btn" onclick="buyNow('Hair Oil (Deal - 2 Bottles)')">🛒 Buy Now</button>
 </div>
 <div class="deal-card">
 <span class="deal-badge free-delivery">Free Delivery</span>
 <h3>3 Bottles Hair Oil 150ml</h3>
 <div class="price">3500 PKR</div>
-<button class="buy-btn" onclick="buyNow('Hair Oil (Deal - 3 Bottles)')">Buy Now</button>
-</div>
-<div class="deal-card">
-<span class="deal-badge free-delivery">Free Delivery</span>
-<h3>2 Bottles Hair Serum 150ml</h3>
-<div class="price">3100 PKR</div>
-<button class="buy-btn" onclick="buyNow('Hair Serum (Deal - 2 Bottles)')">Buy Now</button>
+<button class="buy-btn" onclick="buyNow('Hair Oil (Deal - 3 Bottles)')">🛒 Buy Now</button>
 </div>
 </div>
 </div>
@@ -222,7 +214,7 @@ function buyNow(productName) {
 
 <footer>
 <div class="container">
-<p>&copy; 2024 Moo Elixir. All rights reserved. | Contact: <a href="tel:+923272450324" style="color:#90EE90;">0327-2450324</a></p>
+<p>&copy; 2024 Moo Elixir. All rights reserved. | <a href="tel:+923272450324" style="color:#90EE90;">📞 0327-2450324</a> | Free Delivery All Over Pakistan</p>
 </div>
 </footer>
 
