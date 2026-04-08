@@ -73,6 +73,58 @@ footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:whit
 </head>
 <body>
 
+<script>
+// WhatsApp number
+const whatsappNumber = '923272450324';
+
+// Product prices
+const oilPrices = {
+    '1': 1200,
+    '2': 2200,
+    '3': 3500,
+    '0.5': 400
+};
+
+const serumPrices = {
+    '1': 1600,
+    '2': 3100,
+    '3': 4500
+};
+
+function toggleMenu() {
+    const navLinks = document.getElementById('nav-links');
+    navLinks.classList.toggle('active');
+}
+
+function updatePrice(product) {
+    const qtySelect = document.getElementById(product + '-qty');
+    const priceElement = document.getElementById(product + '-price');
+    const qty = qtySelect.value;
+    
+    if (product === 'oil' && oilPrices[qty]) {
+        priceElement.textContent = oilPrices[qty] + ' PKR';
+    } else if (product === 'serum' && serumPrices[qty]) {
+        priceElement.textContent = serumPrices[qty] + ' PKR';
+    }
+}
+
+function buyNow(productName) {
+    const qtySelect = document.getElementById(productName.toLowerCase().replace(' ', '-') + '-qty');
+    if (!qtySelect || qtySelect.disabled) {
+        alert('This product is out of stock!');
+        return;
+    }
+    
+    const qty = qtySelect.value;
+    const price = productName.includes('Oil') ? oilPrices[qty] : serumPrices[qty];
+    const qtyText = qty === '0.5' ? '50ml' : qty + ' bottle' + (qty > 1 ? 's' : '');
+    
+    const message = `Hi! I want to order:\n${productName} (${qtyText})\nPrice: ${price} PKR\nPlease confirm availability and delivery details.`;
+    
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+}
+</script>
+
 <header>
 <div class="container">
 <nav>
@@ -135,7 +187,7 @@ footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:whit
 <option value="2">2 Bottles 150ml (3100 PKR)</option>
 <option value="3">3 Bottles 150ml (4500 PKR)</option>
 </select>
-<button class="buy-btn out-of-stock" disabled>Out of Stock</button>
+<button class="buy-btn out-of-stock" onclick="buyNow('Hair Serum')" disabled>Out of Stock</button>
 </div>
 
 </div>
@@ -150,59 +202,39 @@ footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:whit
 <span class="deal-badge free-delivery">Free Delivery</span>
 <h3>2 Bottles Hair Oil 150ml</h3>
 <div class="price">2200 PKR</div>
-<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 2 bottles of Hair Oil 150ml')">Buy Now</button>
+<button class="buy-btn" onclick="buyNow('Hair Oil (Deal - 2 Bottles)')">Buy Now</button>
 </div>
 <div class="deal-card">
 <span class="deal-badge free-delivery">Free Delivery</span>
 <h3>3 Bottles Hair Oil 150ml</h3>
 <div class="price">3500 PKR</div>
-<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 3 bottles of Hair Oil 150ml')">Buy Now</button>
+<button class="buy-btn" onclick="buyNow('Hair Oil (Deal - 3 Bottles)')">Buy Now</button>
 </div>
 <div class="deal-card">
 <span class="deal-badge free-delivery">Free Delivery</span>
 <h3>2 Bottles Hair Serum 150ml</h3>
 <div class="price">3100 PKR</div>
-<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 2 bottles of Hair Serum 150ml')">Buy Now</button>
+<button class="buy-btn" onclick="buyNow('Hair Serum (Deal - 2 Bottles)')">Buy Now</button>
 </div>
 </div>
 </div>
 </section>
 
+<footer>
+<div class="container">
+<p>&copy; 2024 Moo Elixir. All rights reserved. | Contact: <a href="tel:+923272450324" style="color:#90EE90;">0327-2450324</a></p>
+</div>
+</footer>
+
 <script>
+// Auto slider for hero
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
-const oilPrices = {1: 1200, 2: 2200, 3: 3500, 0.5: 400};
-const serumPrices = {1: 1600, 2: 3100, 3: 4500};
-
-function nextSlide() {
+setInterval(() => {
     slides[currentSlide].classList.remove('active');
     currentSlide = (currentSlide + 1) % slides.length;
     slides[currentSlide].classList.add('active');
-}
-
-setInterval(nextSlide, 5000);
-
-function toggleMenu() {
-    const navLinks = document.getElementById('nav-links');
-    navLinks.classList.toggle('active');
-}
-
-function updatePrice(type) {
-    const qtySelect = document.getElementById(type + '-qty');
-    const priceElement = document.getElementById(type + '-price');
-    const qty = qtySelect.value;
-    const prices = type === 'oil' ? oilPrices : serumPrices;
-    priceElement.textContent = prices[qty] + ' PKR';
-}
-
-function buyNow(product) {
-    const qtySelect = document.getElementById('oil-qty');
-    const qty = qtySelect.value;
-    const prices = oilPrices;
-    const price = prices[qty];
-    const text = `I want ${qty} ${product} (${price} PKR)`;
-    window.open(`https://wa.me/923272450324?text=${encodeURIComponent(text)}`);
-}
+}, 5000);
 </script>
 
 </body>
