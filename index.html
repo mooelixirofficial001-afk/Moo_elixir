@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moo Elixir - Premium Organic Hair Oil</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height:1.6; color:#333;}
+.container {max-width:1200px; margin:0 auto; padding:0 20px;}
+header {background:#8B4513; color:white; padding:1rem 20px; position:fixed; width:100%; top:0; z-index:1000; transition:0.3s;}
+nav {display:flex; justify-content:space-between; align-items:center;}
+<img src="documents/bottle.png" style="width:120px;">
+.nav-links {display:flex; list-style:none; gap:2rem;}
+.nav-links a {color:white; text-decoration:none; transition:color 0.3s;}
+.nav-links a:hover {color:#90EE90;}
+.hamburger {display:none; font-size:1.8rem; cursor:pointer;}
+
+/* Hero Slider */
+.hero {height:80vh; display:flex; align-items:center; justify-content:center; text-align:center; color:white; margin-top:70px; position:relative; overflow:hidden;}
+.slide {position:absolute; width:100%; height:100%; background-size:cover; background-position:center; opacity:0; transition:opacity 1s ease-in-out;}
+.slide.active {opacity:1;}
+.hero-content {position:relative; z-index:2;}
+.hero h1 {font-size:3rem; margin-bottom:1rem; opacity:0; transform:translateY(30px); animation:fadeUp 1s forwards 0.3s;}
+.hero p {font-size:1.2rem; margin-bottom:2rem; opacity:0; transform:translateY(30px); animation:fadeUp 1s forwards 0.6s;}
+.cta-button {background:#228B22; color:white; padding:12px 25px; border-radius:50px; text-decoration:none; font-weight:bold; transition:all 0.3s; opacity:0; transform:translateY(30px); animation:fadeUp 1s forwards 0.9s;}
+.cta-button:hover {background:#32CD32;}
+
+section {padding:80px 0;}
+.section-title {text-align:center; font-size:2rem; margin-bottom:3rem; color:#8B4513;}
+.products-grid, .deals-grid, .benefits-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem;}
+.product-card, .deal-card, .testimonial, .benefit-item {background:white; padding:1.5rem; border-radius:15px; text-align:center; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:0.3s; opacity:0; transform:translateY(30px);}
+.product-card:hover, .deal-card:hover {transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.15);}
+.product-image {width:100px; height:100px; background:#228B22; border-radius:50%; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:2rem; color:white;}
+.price {font-size:1.3rem; font-weight:bold; color:#8B4513; margin:1rem 0;}
+.buy-btn {background:#8B4513; color:white; padding:10px 20px; border:none; border-radius:25px; font-size:1rem; cursor:pointer; width:100%; transition:all 0.3s;}
+.buy-btn:hover {background:#A0522D;}
+.deal-badge {display:inline-block; background:#FF6B35; color:white; padding:5px 12px; border-radius:20px; font-size:0.8rem; margin-bottom:0.5rem;}
+.free-delivery {background:#228B22;}
+.out-of-stock {background:#ccc; color:#666; cursor:not-allowed;}
+.benefit-icon {width:60px; height:60px; background:#32CD32; border-radius:50%; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:1.5rem; color:white;}
+.stars {color:#FFD700; margin-bottom:0.5rem;}
+.customer-name {font-weight:bold; color:#8B4513; margin-top:0.5rem;}
+.contact-form {max-width:600px; margin:0 auto;}
+.form-group {margin-bottom:1rem;}
+.form-group input, .form-group textarea, select {width:100%; padding:12px; border:2px solid #e9ecef; border-radius:10px;}
+.form-group input:focus, .form-group textarea:focus, select:focus {outline:none; border-color:#228B22;}
+.submit-btn {background:#228B22; color:white; padding:12px 25px; border:none; border-radius:25px; cursor:pointer; width:100%; transition:all 0.3s;}
+.submit-btn:hover {background:#32CD32;}
+footer {background:#8B4513; color:white; text-align:center; padding:1.5rem 0;}
+@keyframes fadeUp {to{opacity:1; transform:translateY(0);}}
+
+/* Responsive Menu */
+@media(max-width:768px){
+.nav-links {display:none; flex-direction:column; background:#8B4513; position:absolute; top:70px; right:0; width:200px; padding:1rem;}
+.nav-links.active {display:flex;}
+.hamburger {display:block;}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container">
+<nav>
+<div class="logo">Moo Elixir</div>
+<i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
+<ul class="nav-links" id="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#products">Products</a></li>
+<li><a href="#deals">Deals</a></li>
+<li><a href="#benefits">Benefits</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1605902711622-cfb43c44356f?auto=format&fit=crop&w=1200&q=80');"></div>
+<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1616628180359-06e8b2c26c38?auto=format&fit=crop&w=1200&q=80');"></div>
+<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1594159646218-7d0432d2b609?auto=format&fit=crop&w=1200&q=80');"></div>
+<div class="hero-content">
+<h1>Moo Elixir</h1>
+<p>100% Organic Hair Oil & Serum for Healthy, Shiny Hair</p>
+<a class="cta-button" href="#products">Shop Now</a>
+</div>
+</section>
+
+<section id="about">
+<h2 class="section-title">About Us</h2>
+<div class="container">
+<p>Moo Elixir offers premium organic hair oils and serums crafted from natural plant-based ingredients. Promotes hair growth, strengthens roots, adds shine, and restores natural beauty.</p>
+</div>
+</section>
+
+<section id="products">
+<h2 class="section-title">Products</h2>
+<div class="container products-grid">
+
+<div class="product-card">
+<div class="product-image">💧</div>
+<h3>Hair Oil</h3>
+<div class="price" id="oil-price">1200 PKR</div>
+<select id="oil-qty" onchange="updatePrice('oil')">
+<option value="1">1 Bottle</option>
+<option value="2">2 Bottles (2200 PKR)</option>
+<option value="3">3 Bottles (3500 PKR)</option>
+<option value="0.5">50 ML Hair Oil (400 PKR)</option>
+</select>
+<button class="buy-btn" onclick="buyNow('Hair Oil')">Buy Now</button>
+</div>
+
+<div class="product-card">
+<div class="product-image">🌟</div>
+<h3>Hair Serum <span style="color:#ccc; font-size:0.8rem;">(Out of Stock)</span></h3>
+<div class="price" id="serum-price">1600 PKR</div>
+<select id="serum-qty" onchange="updatePrice('serum')" disabled>
+<option value="1">1 Bottle</option>
+<option value="2">2 Bottles (3100 PKR)</option>
+<option value="3">3 Bottles (4500 PKR)</option>
+</select>
+<button class="buy-btn out-of-stock" disabled>Out of Stock</button>
+</div>
+
+</div>
+</section>
+
+<section id="deals">
+<h2 class="section-title">Deals</h2>
+<div class="container deals-grid">
+<div class="deal-card">
+<span class="deal-badge free-delivery">Free Delivery</span>
+<h3>2 Bottles Hair Oil</h3>
+<div class="price">2200 PKR</div>
+<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 2 bottles of Hair Oil')">Buy Now</button>
+</div>
+<div class="deal-card">
+<span class="deal-badge free-delivery">Free Delivery</span>
+<h3>3 Bottles Hair Oil</h3>
+<div class="price">3500 PKR</div>
+<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 3 bottles of Hair Oil')">Buy Now</button>
+</div>
+<div class="deal-card">
+<span class="deal-badge free-delivery">Free Delivery</span>
+<h3>2 Bottles Hair Serum</h3>
+<div class="price">3100 PKR</div>
+<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 2 bottles of Hair Serum')">Buy Now</button>
+</div>
+<div class="deal-card">
+<span class="deal-badge free-delivery">Free Delivery</span>
+<h3>3 Bottles Hair Serum</h3>
+<div class="price">4500 PKR</div>
+<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 3 bottles of Hair Serum')">Buy Now</button>
+</div>
+</div>
+</section>
+
+<section id="benefits">
+<h2 class="section-title">Benefits</h2>
+<div class="container benefits-grid">
+<div class="benefit-item"><div class="benefit-icon">🌿</div><h3>Hair Growth</h3></div>
+<div class="benefit-item"><div class="benefit-icon">💪</div><h3>Strong Roots</h3></div>
+<div class="benefit-item"><div class="benefit-icon">✨</div><h3>Shine & Smoothness</h3></div>
+<div class="benefit-item"><div class="benefit-icon">🛡️</div><h3>Damage Repair</h3></div>
+</div>
+</section>
+
+<section id="reviews">
+<h2 class="section-title">Customer Reviews</h2>
+<div class="container products-grid">
+<div class="testimonial"><div class="stars">★★★★★</div><p>"My hair has never felt better! Love Moo Elixir."</p><div class="customer-name">– Sara K.</div></div>
+<div class="testimonial"><div class="stars">★★★★★</div><p>"The hair oil and serum really strengthened my roots."</p><div class="customer-name">– Ahmed R.</div></div>
+</div>
+</section>
+
+<section id="contact">
+<h2 class="section-title">Contact Us</h2>
+<div class="container contact-form">
+<form>
+<div class="form-group"><input type="text" placeholder="Your Name" required></div>
+<div class="form-group"><input type="email" placeholder="Email Address" required></div>
+<div class="form-group"><textarea placeholder="Message" rows="5" required></textarea></div>
+<button type="submit" class="submit-btn">Send Message</button>
+</form>
+</div>
+</section>
+
+<footer>
+<p>&copy; 2026 Moo Elixir. All Rights Reserved.</p>
+</footer>
+
+<script>
+// Hamburger menu
+function toggleMenu(){document.getElementById('nav-links').classList.toggle('active');}
+
+// Hero slider
+let currentSlide=0;
+const slides=document.querySelectorAll('.slide');
+function showSlide(index){
+slides.forEach(s=>s.classList.remove('active'));
+slides[index].classList.add('active');
+}
+function nextSlide(){currentSlide=(currentSlide+1)%slides.length; showSlide(currentSlide);}
+showSlide(currentSlide);
+setInterval(nextSlide,5000); // 5 sec
+
+// Price updates & WhatsApp
+const oilPrices={1:1200,2:2200,3:3500,0.5:400}; const serumPrices={1:1600,2:3100,3:4500};
+function updatePrice(type){if(type==='oil'){const qty=document.getElementById('oil-qty').value; document.getElementById('oil-price').innerText=oilPrices[qty]+' PKR';}else{const qty=document.getElementById('serum-qty').value; document.getElementById('serum-price').innerText=serumPrices[qty]+' PKR';}}
+function buyNow(product){let qty, price, text;if(product==='Hair Oil'){qty=document.getElementById('oil-qty').value; price=oilPrices[qty];}else{qty=document.getElementById('serum-qty').value; price=serumPrices[qty];} text=`I want ${qty} ${product} for ${price} PKR`; window.open(`https://wa.me/923272450324?text=${encodeURIComponent(text)}`);}
+
+// Scroll animations
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1'; entry.target.style.transform='translateY(0)';}});},{threshold:0.2});
+document.querySelectorAll('.product-card,.deal-card,.benefit-item,.testimonial').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
