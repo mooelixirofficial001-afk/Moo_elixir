@@ -32,7 +32,7 @@ nav {display:flex; justify-content:space-between; align-items:center;}
 .cta-button:hover {transform:translateY(-3px); box-shadow:0 15px 40px rgba(255,215,0,0.6);}
 
 section {padding:100px 0;}
-.section-title {text-align:center; font-size:2.5rem; font-weight:700; margin-bottom:4rem; color:#D4AF37; position:relative;}
+.section-title {text-align:center; font-size:2.5rem; font-weight:700; margin-bottom:4rem; color:#8B4513; position:relative;}
 .section-title::after {content:''; display:block; width:80px; height:4px; background:linear-gradient(45deg, #DAA520, #FFD700); margin:20px auto 0;}
 .products-grid, .deals-grid, .benefits-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2.5rem;}
 .product-card, .deal-card, .testimonial, .benefit-item {background:white; padding:2.5rem 2rem; border-radius:20px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.08); transition:all 0.4s; border:1px solid rgba(255,255,255,0.2);}
@@ -178,60 +178,4 @@ footer {background:linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); color:whit
 <div class="container">
 <h2 class="section-title">Key Benefits</h2>
 <div class="benefits-grid">
-<div class="benefit-item"><div class="benefit-icon">🌿</div><h3>Hair Growth</h3></div>
-<div class="benefit-item"><div class="benefit-icon">💪</div><h3>Strong Roots</h3></div>
-<div class="benefit-item"><div class="benefit-icon">✨</div><h3>Shine & Smoothness</h3></div>
-<div class="benefit-item"><div class="benefit-icon">🛡️</div><h3>Damage Repair</h3></div>
-</div>
-</div>
-</section>
-
-<section id="reviews">
-<div class="container">
-<h2 class="section-title">Customer Reviews</h2>
-<div class="products-grid">
-<div class="testimonial"><div class="stars">★★★★★</div><p>"My hair has never felt better! Love Moo Elixir."</p><div class="customer-name">– Sara K.</div></div>
-<div class="testimonial"><div class="stars">★★★★★</div><p>"The hair oil and serum really strengthened my roots."</p><div class="customer-name">– Ahmed R.</div></div>
-</div>
-</div>
-</section>
-
-<section id="contact">
-<div class="container">
-<h2 class="section-title">Contact Us</h2>
-<div class="contact-form">
-<form>
-<div class="form-group"><input type="text" placeholder="Your Name" required></div>
-<div class="form-group"><input type="email" placeholder="Email Address" required></div>
-<div class="form-group"><textarea placeholder="Message" rows="6" required></textarea></div>
-<button type="submit" class="submit-btn">Send Message</button>
-</form>
-</div>
-</div>
-</section>
-
-<footer>
-<div class="container">
-<p>&copy; 2026 Moo Elixir. All Rights Reserved. | Premium Organic Hair Care</p>
-</div>
-</footer>
-
-<script>
-// Hamburger menu
-function toggleMenu(){document.getElementById('nav-links').classList.toggle('active');}
-
-// Hero slider
-let currentSlide=0;
-const slides=document.querySelectorAll('.slide');
-function showSlide(index){
-slides.forEach(s=>s.classList.remove('active'));
-slides[index].classList.add('active');
-}
-function nextSlide(){currentSlide=(currentSlide+1)%slides.length; showSlide(currentSlide);}
-showSlide(currentSlide);
-setInterval(nextSlide,6000);
-
-// Price updates & WhatsApp
-const oilPrices={1:1200,2:2200,3:3500,0.5:400}; const serumPrices={1:1600,2:3100,3:4500};
-function updatePrice(type){if(type==='oil'){const qty=document.getElementById('oil-qty').value; document.getElementById('oil-price').innerText=oilPrices[qty]+' PKR';}else{const qty=document.getElementById('serum-qty').value; document.getElementById('serum-price').innerText=serumPrices[qty]+' PKR';}}
-function buyNow(product){let qty, price, text;if(product==='Hair Oil'){qty=document.getElementById('oil-qty').value; price=oilPrices[qty]; text=`I want ${qty} ${product} ${(qty==0.5?'50ml':'150ml')} for ${price} PKR`;}else{qty=document.getElementById('serum-qty').value; price=serumPrices[qty];
+<div class="benefit-item"><div class="benefit-icon">
