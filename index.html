@@ -115,12 +115,12 @@ footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:whit
 
 <div class="product-card">
 <div class="product-image">💧</div>
-<h3>Hair Oil</h3>
+<h3>Hair Oil (150ml)</h3>
 <div class="price" id="oil-price">1200 PKR</div>
 <select id="oil-qty" onchange="updatePrice('oil')">
-<option value="1">1 Bottle</option>
-<option value="2">2 Bottles (2200 PKR)</option>
-<option value="3">3 Bottles (3500 PKR)</option>
+<option value="1">1 Bottle 150ml (1200 PKR)</option>
+<option value="2">2 Bottles 150ml (2200 PKR)</option>
+<option value="3">3 Bottles 150ml (3500 PKR)</option>
 <option value="0.5">50 ML Hair Oil (400 PKR)</option>
 </select>
 <button class="buy-btn" onclick="buyNow('Hair Oil')">Buy Now</button>
@@ -128,12 +128,12 @@ footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:whit
 
 <div class="product-card">
 <div class="product-image">🌟</div>
-<h3>Hair Serum <span style="color:#bdc3c7; font-size:0.9rem; font-weight:500;">(Out of Stock)</span></h3>
+<h3>Hair Serum 150ml <span style="color:#bdc3c7; font-size:0.9rem; font-weight:500;">(Out of Stock)</span></h3>
 <div class="price" id="serum-price">1600 PKR</div>
 <select id="serum-qty" onchange="updatePrice('serum')" disabled>
-<option value="1">1 Bottle</option>
-<option value="2">2 Bottles (3100 PKR)</option>
-<option value="3">3 Bottles (4500 PKR)</option>
+<option value="1">1 Bottle 150ml (1600 PKR)</option>
+<option value="2">2 Bottles 150ml (3100 PKR)</option>
+<option value="3">3 Bottles 150ml (4500 PKR)</option>
 </select>
 <button class="buy-btn out-of-stock" disabled>Out of Stock</button>
 </div>
@@ -148,27 +148,27 @@ footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:whit
 <div class="deals-grid">
 <div class="deal-card">
 <span class="deal-badge free-delivery">Free Delivery</span>
-<h3>2 Bottles Hair Oil</h3>
+<h3>2 Bottles Hair Oil 150ml</h3>
 <div class="price">2200 PKR</div>
-<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 2 bottles of Hair Oil')">Buy Now</button>
+<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 2 bottles of Hair Oil 150ml')">Buy Now</button>
 </div>
 <div class="deal-card">
 <span class="deal-badge free-delivery">Free Delivery</span>
-<h3>3 Bottles Hair Oil</h3>
+<h3>3 Bottles Hair Oil 150ml</h3>
 <div class="price">3500 PKR</div>
-<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 3 bottles of Hair Oil')">Buy Now</button>
+<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 3 bottles of Hair Oil 150ml')">Buy Now</button>
 </div>
 <div class="deal-card">
 <span class="deal-badge free-delivery">Free Delivery</span>
-<h3>2 Bottles Hair Serum</h3>
+<h3>2 Bottles Hair Serum 150ml</h3>
 <div class="price">3100 PKR</div>
-<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 2 bottles of Hair Serum')">Buy Now</button>
+<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 2 bottles of Hair Serum 150ml')">Buy Now</button>
 </div>
 <div class="deal-card">
 <span class="deal-badge free-delivery">Free Delivery</span>
-<h3>3 Bottles Hair Serum</h3>
+<h3>3 Bottles Hair Serum 150ml</h3>
 <div class="price">4500 PKR</div>
-<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 3 bottles of Hair Serum')">Buy Now</button>
+<button class="buy-btn" onclick="window.open('https://wa.me/923272450324?text=I want 3 bottles of Hair Serum 150ml')">Buy Now</button>
 </div>
 </div>
 </div>
@@ -234,8 +234,4 @@ setInterval(nextSlide,6000);
 // Price updates & WhatsApp
 const oilPrices={1:1200,2:2200,3:3500,0.5:400}; const serumPrices={1:1600,2:3100,3:4500};
 function updatePrice(type){if(type==='oil'){const qty=document.getElementById('oil-qty').value; document.getElementById('oil-price').innerText=oilPrices[qty]+' PKR';}else{const qty=document.getElementById('serum-qty').value; document.getElementById('serum-price').innerText=serumPrices[qty]+' PKR';}}
-function buyNow(product){let qty, price, text;if(product==='Hair Oil'){qty=document.getElementById('oil-qty').value; price=oilPrices[qty];}else{qty=document.getElementById('serum-qty').value; price=serumPrices[qty];} text=`I want ${qty} ${product} for ${price} PKR`; window.open(`https://wa.me/923272450324?text=${encodeURIComponent(text)}`);}
-
-// Scroll animations
-const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1'; entry.target.style.transform='translateY(0)';}});},{threshold:0.1});
-document.querySelectorAll('.product-card,.deal-card,.benefit-item,.testimonial').forEach(el=>observer.observe
+function buyNow(product){let qty, price, text;if(product==='Hair Oil'){qty=document.getElementById('oil-qty').value; price=oilPrices[qty]; text=`I want ${qty} ${product} ${(qty==0.5?'50ml':'150ml')} for ${price} PKR`;}else{qty=document.getElementById('serum-qty').value; price=serumPrices[qty]; text
