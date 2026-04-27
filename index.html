@@ -35,125 +35,73 @@ section {padding:100px 0;}
 .section-title {text-align:center; font-size:2.5rem; font-weight:700; margin-bottom:4rem; color:#8B4513; position:relative;}
 .section-title::after {content:''; display:block; width:80px; height:4px; background:linear-gradient(45deg, #228B22, #32CD32); margin:20px auto 0;}
 .products-grid, .deals-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2.5rem;}
-.product-card, .deal-card {background:white; padding:2.5rem 2rem; border-radius:20px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.08); transition:all 0.4s; border:1px solid rgba(255,255,255,0.2);}
+.product-card, .deal-card {background:white; padding:2rem; border-radius:20px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.08); transition:all 0.4s; border:1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;}
 .product-card:hover, .deal-card:hover {transform:translateY(-10px); box-shadow:0 30px 80px rgba(0,0,0,0.15);}
-.product-image {width:110px; height:110px; background:linear-gradient(45deg, #228B22, #32CD32); border-radius:50%; margin:0 auto 1.5rem; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:white; box-shadow:0 10px 30px rgba(34,139,34,0.3);}
-.price {font-size:1.5rem; font-weight:700; color:#8B4513; margin:1.5rem 0;}
+
+.product-img-container {width:100%; height:350px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center; overflow:hidden; border-radius:12px; background:#f9f9f9;}
+.product-img-container img {max-width:100%; max-height:100%; object-fit: contain; transition: transform 0.5s;}
+.product-card:hover .product-img-container img {transform: scale(1.05);}
+
+.price {font-size:1.5rem; font-weight:700; color:#8B4513; margin:1rem 0;}
+select {width:100%; padding:12px; border-radius:8px; border:1px solid #ddd; margin-bottom:1.5rem; font-family:inherit; outline:none; cursor:pointer;}
 .buy-btn {background:linear-gradient(45deg, #8B4513, #A0522D); color:white; padding:15px 30px; border:none; border-radius:30px; font-size:1.1rem; font-weight:600; cursor:pointer; width:100%; transition:all 0.3s; letter-spacing:1px;}
 .buy-btn:hover:not(.out-of-stock) {background:linear-gradient(45deg, #A0522D, #D2691E); transform:translateY(-2px);}
 .deal-badge {display:inline-block; background:linear-gradient(45deg, #FF6B35, #FF8C42); color:white; padding:8px 16px; border-radius:25px; font-size:0.9rem; font-weight:600; margin-bottom:1rem; box-shadow:0 5px 15px rgba(255,107,53,0.4);}
 .free-delivery {background:linear-gradient(45deg, #228B22, #32CD32)!important; box-shadow:0 5px 15px rgba(34,139,34,0.4);}
 .out-of-stock {background:#bdc3c7 !important; color:#7f8c8d !important; cursor:not-allowed !important; box-shadow:none !important;}
-.about-text {font-size:1.1rem; max-width:800px; margin:0 auto; text-align:center; color:#5a6c7d; line-height:1.8;}
 footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:white; text-align:center; padding:3rem 0; font-size:1.1rem;}
 
-/* Responsive */
 @media(max-width:768px){
 .logo {font-size:1.5rem;}
 .nav-links {display:none; flex-direction:column; background:linear-gradient(135deg, #8B4513, #A0522D); position:absolute; top:100%; right:0; width:250px; padding:2rem; box-shadow:0 10px 30px rgba(0,0,0,0.2); border-radius:0 0 20px 20px;}
 .nav-links.active {display:flex;}
 .hamburger {display:block;}
 .hero h1 {font-size:2.5rem;}
-.hero p {font-size:1.1rem;}
-.cta-button {padding:15px 30px; font-size:1rem;}
-.section-title {font-size:2rem;}
-.products-grid, .deals-grid {grid-template-columns:1fr; gap:2rem;}
 }
 </style>
 </head>
 <body>
 
 <script>
-// WhatsApp number
 const whatsappNumber = '923272450324';
-
-// Product prices
-const oilPrices = {
-    '1': 1000,
-    '2': 1900,
-    '3': 1800,
-    '0.5': 400
-};
-
-const serumPrices = {
-    '0.5': 1500,
-    '1': 1600,
-    '2': 3100,
-    '3': 4500
-};
+const oilPrices = {'1': 1000, '2': 1900, '3': 1800, '0.5': 400};
 
 function toggleMenu() {
-    const navLinks = document.getElementById('nav-links');
-    navLinks.classList.toggle('active');
+    document.getElementById('nav-links').classList.toggle('active');
 }
 
 function updatePrice(product) {
-    const qtySelect = document.getElementById(product + '-qty');
-    const priceElement = document.getElementById(product + '-price');
-    const qty = qtySelect.value;
-    
-    if (product === 'oil' && oilPrices[qty]) {
-        priceElement.textContent = oilPrices[qty] + ' PKR';
-    } else if (product === 'serum' && serumPrices[qty]) {
-        priceElement.textContent = serumPrices[qty] + ' PKR';
-    }
+    const qty = document.getElementById(product + '-qty').value;
+    document.getElementById(product + '-price').textContent = oilPrices[qty] + ' PKR';
 }
 
 function buyNow(productName) {
-    // Only show out of stock message for Serum products
     if (productName.includes('Serum')) {
-        alert('Hair Serum is currently out of stock! Please choose Hair Oil instead.');
-        return;
+        alert('Hair Serum is currently out of stock!'); return;
     }
-    
-    // For individual Hair Oil order - get quantity from dropdown
-    if (productName === 'Hair Oil') {
-        const qtySelect = document.getElementById('oil-qty');
-        const qty = qtySelect.value;
-        const price = oilPrices[qty];
-        const qtyText = qty === '0.5' ? '50ml' : qty + ' bottle' + (qty > 1 ? 's' : '');
-        
-        const message = `Hi! I want to order:\nHair Oil 150ml (${qtyText})\nPrice: ${price} PKR\nPlease confirm availability and delivery details.`;
-        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        return;
-    }
-    
-    // For Deals (fixed quantities)
-    let message = `Hi! I want to order:\n${productName}\nPlease confirm availability and delivery details.`;
+    let message = `Hi! I want to order ${productName}. Please confirm.`;
     window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
 }
 </script>
 
 <header>
-<div class="container">
-<nav>
+<div class="container"><nav>
 <div class="logo">Moo Elixir</div>
 <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
 <ul class="nav-links" id="nav-links">
 <li><a href="#about">About</a></li>
 <li><a href="#products">Products</a></li>
 <li><a href="#deals">Deals</a></li>
-<li><a href="#contact">Contact</a></li>
 </ul>
-</nav>
-</div>
+</nav></div>
 </header>
 
 <section class="hero">
 <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1605902711622-cfb43c44356f?auto=format&fit=crop&w=1920&q=80');"></div>
-<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1616628180359-06e8b2c26c38?auto=format&fit=crop&w=1920&q=80');"></div>
-<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1594159646218-7d0432d2b609?auto=format&fit=crop&w=1920&q=80');"></div>
 <div class="hero-content">
 <h1>Moo Elixir</h1>
-<p>100% Organic Hair Oil & Serum for Healthy, Shiny Hair</p>
+<p>100% Organic Hair Care Solutions</p>
 <a class="cta-button" href="#products">Shop Now</a>
-</div>
-</section>
-
-<section id="about">
-<div class="container">
-<h2 class="section-title">About Us</h2>
-<p class="about-text">Moo Elixir offers premium organic hair oils crafted from natural plant-based ingredients. Promotes hair growth, strengthens roots, adds shine, and restores natural beauty. <strong>Hair Serum is temporarily out of stock!</strong></p>
 </div>
 </section>
 
@@ -162,31 +110,27 @@ function buyNow(productName) {
 <h2 class="section-title">Our Products</h2>
 <div class="products-grid">
 
-<!-- HAIR OIL - FULLY AVAILABLE - PREMIUM BOTTLE IMAGE -->
 <div class="product-card">
-<img src="https://image.pollinations.ai/prompt/Is%20premium%20quality%20red%20and%20amber%20liquid%20product%20ki%20high-resolution%203D%20visualization%20product%20photography%20render%2C%20jo%20aik%20minimalist%20solid%20pure%20white%20background%20par%20markazi%20tor%20par%20rakhi%20gai%20hai.%20Ye%20clear%20glass%20ya%20PET%20bottle%20seedhi%20kharhi%20hai%20aur%20is%20mein%20clear%20amber-red%20liquid%20product%20bhara%20hua%20hai.%20Bottle%20ke%20upar%20aik%20shiny%2C%20solid%20black%20flip-top%20plastic%20screw%20cap%20lagah%20hai.%20Bottle%20ki%20body%20par%20wrap-around%20aik%20premium%20white%20paper%20label%20hai%20jis%20ka%20texture%20subtle%20linen%20jesa%20hai.%20Label%20ke%20darmiyan%20mein%20upar%20aik%20elegant%20line-art%20style%20ka%20black%20female%20character%20logo%20hai%2C%20jis%20mein%20larki%20ka%20chehra%2C%20lamba%20ghunghryala%20baal%20aur%20ser%20par%20aik%20crown%20bana%20hua%20hai.%20Logo%20ke%20theek%20neechay%2C%20barhay%20bold%2C%20modern%20serif%20font%20mein%20main%20product%20ka%20naam%20likha%20hai%3A%20%27MOO%20ELIXIR%27.%20Is%20ke%20foran%20neechay%2C%20aik%20delicate%20small%20serif%20font%20mein%20brand%20ka%20tagline%2Fslogan%20likha%20hai%3A%20%27Where%20roots%20refine%2C%20beauty%20defines%27.%20Label%20ke%20sub%20se%20neechay%20walay%20hissay%20mein%2C%20chotay%20aur%20saaf%20font%20mein%20net%20volume%20text%20likha%20hai%3A%20%275.07%20FL%20OZ%20%2F%20150%20ML%27.%20Bottle%20ke%20pooray%20lower%20body%20circumference%20par%2C%20label%20ke%20neechay%20se%20le%20kar%20base%20tak%20aik%20rich%2C%20deep%20dark%20green%20fir%20ya%20pine%20forest%20foliage%20ka%20photo-realistic%20wrap-around%20pattern%20print%20kiya%20gaya%20hai.%20Lighting%20bilkul%20natural%20studio%20lighting%20hai%20jo%20product%20ki%20detail%20ko%20enhance%20kar%20rahi%20hai.%20Camera%20product%20ke%20eyes%20ke%20level%20par%20rakha%20gaya%20hai?width=400&height=400&nologo=true&seed=42" alt="Moo Elixir Premium Hair Oil 150ml" class="product-image-real" style="width:110px; height:110px; border-radius:15px; object-fit:cover; box-shadow:0 10px 30px rgba(139,69,19,0.3);">
-<h3>Hair Oil (150ml) <span style="color:#228B22; font-size:0.9rem; font-weight:600;">✅ In Stock</span></h3>
+<div class="product-img-container">
+    <img src="https://i.postimg.cc/85zMvS9x/moo-render.jpg" alt="Moo Elixir Hair Oil">
+</div>
+<h3>Hair Oil (150ml) <span style="color:#228B22; font-size:0.9rem;">✅ In Stock</span></h3>
 <div class="price" id="oil-price">1000 PKR</div>
 <select id="oil-qty" onchange="updatePrice('oil')">
-<option value="1">1 Bottle 150ml (1000 PKR)</option>
-<option value="2">2 Bottles 150ml (1900 PKR)</option>
-<option value="3">3 Bottles 150ml (1800 PKR)</option>
-<option value="0.5">50 ML Hair Oil (400 PKR)</option>
+<option value="1">1 Bottle (1000 PKR)</option>
+<option value="2">2 Bottles (1900 PKR)</option>
+<option value="3">3 Bottles (1800 PKR)</option>
+<option value="0.5">50 ML Bottle (400 PKR)</option>
 </select>
 <button class="buy-btn" onclick="buyNow('Hair Oil')">🛒 Buy Now</button>
 </div>
 
-<!-- HAIR SERUM - OUT OF STOCK - NEW ORGANIC SCENE IMAGE -->
 <div class="product-card">
-<img src="https://image.pollinations.ai/prompt/Is%20image-0%20me%20dikhai%20gai%20%27Moo%20Elixir%27%20hair%20serum%20bottle%20ko%20aik%20minimalist%20studio%20environment%20se%20aik%20tactile%2C%20organic%20product%20scene%20me%20tabdeel%20karein.%20Bottle%20aik%20classic%20brown%20amber%20glass%20dropper%20bottle%20honi%20chahiye%20jis%20me%20oil%20fill%20ho%2C%20original%20label%20design%20aur%20content%20%28logo%2C%20crown%2C%20text%2C%20sizes%2C%20aur%20top-and-bottom%20juniper%20forest%20motif%20bands%29%20ko%20bilkul%20use%20karte%20hue.%20Is%20amber%20bottle%20ko%20aik%20coarse-weave%20natural%20burlap%20fabric%20par%20rakhein%2C%20aur%20surface%20ko%20aik%20blurred%20marble%20wall%20background%20se%20complementary%20karein.%20Foreground%20me%20bottle%20ke%20paas%20aik%20soft-focused%20twig%2C%20berries%20ke%20saath%20juniper%20fir%2C%20ko%20original%20base%20elements%20ki%20tarah%20place%20karein.%20Lighting%20ko%20soft%20natural%20daylight%20rakhein%2C%20with%20subtle%20shadows%2C%20aur%20focus%20ko%20bottle%20label%20par%20crisp%20rakhein%20while%20surroundings%20gently%20blur%20hon.%20All%20text%20detail%3A%20%27MOO%20ELIXIR%27%20in%20bold%20serif%2C%20original%20slogan%2C%20and%20volumetric%20text%20%285.07%20FL%20OZ%20%2F%20150%20ML%29%20must%20remain%20sharp%20and%20in%20original%20position?width=400&height=400&nologo=true&seed=123" alt="Moo Elixir Premium Hair Serum 50ml" class="product-image-real" style="width:110px; height:110px; border-radius:15px; object-fit:cover; box-shadow:0 10px 30px rgba(189,195,199,0.3);">
-<h3>Hair Serum 50ml <span style="color:#e74c3c; font-size:0.9rem; font-weight:600;">❌ Out of Stock</span></h3>
-<div class="price" id="serum-price" style="color:#bdc3c7;">1500 PKR</div>
-<select id="serum-qty" disabled>
-<option value="0.5">50 ML Hair Serum (1500 PKR)</option>
-<option value="1">1 Bottle 150ml (1600 PKR)</option>
-<option value="2">2 Bottles 150ml (3100 PKR)</option>
-<option value="3">3 Bottles 150ml (4500 PKR)</option>
-</select>
+<div class="product-img-container">
+    <img src="https://i.postimg.cc/mD8zM2Sg/serum-render.jpg" alt="Moo Elixir Hair Serum" style="opacity: 0.8;">
+</div>
+<h3>Hair Serum (50ml) <span style="color:#e74c3c; font-size:0.9rem;">❌ Out of Stock</span></h3>
+<div class="price" style="color:#bdc3c7;">1500 PKR</div>
 <button class="buy-btn out-of-stock" disabled>Out of Stock</button>
 </div>
 
@@ -198,44 +142,13 @@ function buyNow(productName) {
 <div class="container">
 <h2 class="section-title">Special Deals</h2>
 <div class="deals-grid">
-<div class="deal-card">
-<span class="deal-badge free-delivery">Free Delivery</span>
-<h3>2 Bottles Hair Oil 150ml</h3>
-<div class="price">1900 PKR</div>
-<button class="buy-btn" onclick="buyNow('Hair Oil (Deal - 2 Bottles)')">🛒 Buy Now</button>
-</div>
-<div class="deal-card">
-<span class="deal-badge free-delivery">Free Delivery</span>
-<h3>3 Bottles Hair Oil 150ml</h3>
-<div class="price">1800 PKR</div>
-<button class="buy-btn" onclick="buyNow('Hair Oil (Deal - 3 Bottles)')">🛒 Buy Now</button>
-</div>
-<div class="deal-card">
-<span class="deal-badge free-delivery">Free Delivery</span>
-<h3>2 x 50ml Hair Oil Bottles</h3>
-<div class="price">750 PKR</div>
-<button class="buy-btn" onclick="buyNow('Hair Oil (Deal - 2 x 50ml Bottles)')">🛒 Buy Now</button>
-</div>
+<div class="deal-card"><span class="deal-badge free-delivery">Free Delivery</span><h3>2 Bottles Hair Oil</h3><div class="price">1900 PKR</div><button class="buy-btn" onclick="buyNow('Deal 2 Bottles')">🛒 Buy Now</button></div>
+<div class="deal-card"><span class="deal-badge free-delivery">Free Delivery</span><h3>3 Bottles Hair Oil</h3><div class="price">1800 PKR</div><button class="buy-btn" onclick="buyNow('Deal 3 Bottles')">🛒 Buy Now</button></div>
 </div>
 </div>
 </section>
 
-<footer>
-<div class="container">
-<p>&copy; 2024 Moo Elixir. All rights reserved. | <a href="tel:+923272450324" style="color:#90EE90;">📞 0327-2450324</a></p>
-</div>
-</footer>
-
-<script>
-// Auto slider for hero
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-setInterval(() => {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-}, 5000);
-</script>
+<footer><div class="container"><p>&copy; 2024 Moo Elixir. | 📞 0327-2450324</p></div></footer>
 
 </body>
 </html>
