@@ -34,7 +34,7 @@ section {padding:100px 0;}
 .products-grid, .deals-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2.5rem;}
 .product-card, .deal-card {background:white; padding:2rem; border-radius:20px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.08); border:1px solid #eee;}
 
-/* Image Box Styling - Jahan apki images ayengi */
+/* Image Box Styling */
 .img-box {width:100%; height:280px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#fff; border-radius:15px;}
 .img-box img {max-width:100%; max-height:100%; object-fit:contain;}
 
@@ -56,7 +56,8 @@ footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:whit
 
 <script>
 const whatsappNumber = '923272450324';
-const oilPrices = {'1': 1000, '2': 1900, '3': 1800, '0.5': 400};
+// Updated prices as requested
+const oilPrices = {'1': 1000, '2': 1950, '3': 1900, '0.5': 450};
 
 function toggleMenu() { document.getElementById('nav-links').classList.toggle('active'); }
 
@@ -73,6 +74,12 @@ function buyNow(productName) {
     if (productName === 'Hair Oil') {
         const qty = document.getElementById('oil-qty').value;
         message = `Hi! I want to order Hair Oil. Qty: ${qty}. Price: ${oilPrices[qty]} PKR.`;
+    } else if (productName === 'Deal 2 Bottles') {
+        message = `Hi! I want to order Deal 1 (2 Bottles Oil). Price: 1950 PKR.`;
+    } else if (productName === 'Deal 3 Bottles') {
+        message = `Hi! I want to order Deal 2 (3 Bottles Oil). Price: 1900 PKR.`;
+    } else if (productName === 'Deal 2x50ml') {
+        message = `Hi! I want to order Deal 3 (2 x 50ml Bottles). Price: 850 PKR.`;
     }
     window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
 }
@@ -114,9 +121,9 @@ function buyNow(productName) {
     <div class="price" id="oil-price">1000 PKR</div>
     <select id="oil-qty" onchange="updatePrice('oil')">
         <option value="1">1 Bottle 150ml (1000 PKR)</option>
-        <option value="2">2 Bottles 150ml (1900 PKR)</option>
-        <option value="3">3 Bottles 150ml (1800 PKR)</option>
-        <option value="0.5">50 ML Bottle (400 PKR)</option>
+        <option value="2">2 Bottles 150ml (1950 PKR)</option>
+        <option value="3">3 Bottles 150ml (1900 PKR)</option>
+        <option value="0.5">50 ML Bottle (450 PKR)</option>
     </select>
     <button class="buy-btn" onclick="buyNow('Hair Oil')">🛒 Buy Now</button>
 </div>
@@ -139,9 +146,9 @@ function buyNow(productName) {
 <div class="container">
 <h2 class="section-title">Special Deals</h2>
 <div class="deals-grid">
-    <div class="deal-card"><span class="deal-badge">Free Delivery</span><h3>2 Bottles Oil</h3><div class="price">1900 PKR</div><button class="buy-btn" onclick="buyNow('Deal 2 Bottles')">🛒 Buy Now</button></div>
-    <div class="deal-card"><span class="deal-badge">Free Delivery</span><h3>3 Bottles Oil</h3><div class="price">1800 PKR</div><button class="buy-btn" onclick="buyNow('Deal 3 Bottles')">🛒 Buy Now</button></div>
-    <div class="deal-card"><span class="deal-badge">Free Delivery</span><h3>2 x 50ml Bottles</h3><div class="price">750 PKR</div><button class="buy-btn" onclick="buyNow('Deal 2x50ml')">🛒 Buy Now</button></div>
+    <div class="deal-card"><span class="deal-badge">Free Delivery</span><h3>Deal 1: 2 Bottles Oil</h3><div class="price">1950 PKR</div><button class="buy-btn" onclick="buyNow('Deal 2 Bottles')">🛒 Buy Now</button></div>
+    <div class="deal-card"><span class="deal-badge">Free Delivery</span><h3>Deal 2: 3 Bottles Oil</h3><div class="price">1900 PKR</div><button class="buy-btn" onclick="buyNow('Deal 3 Bottles')">🛒 Buy Now</button></div>
+    <div class="deal-card"><span class="deal-badge">Free Delivery</span><h3>Deal 3: 2 x 50ml Bottles</h3><div class="price">850 PKR</div><button class="buy-btn" onclick="buyNow('Deal 2x50ml')">🛒 Buy Now</button></div>
 </div>
 </div>
 </section>
