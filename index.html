@@ -57,7 +57,7 @@ footer {background:linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color:whit
 <script>
 const whatsappNumber = '923272450324';
 // Updated prices as requested
-const oilPrices = {'1': 1000, '2': 1950, '3': 1900, '0.5': 450};
+const oilPrices = {'1': 1000, '2': 1950, '3': 2950, '0.5': 450};
 
 function toggleMenu() { document.getElementById('nav-links').classList.toggle('active'); }
 
@@ -77,7 +77,7 @@ function buyNow(productName) {
     } else if (productName === 'Deal 2 Bottles') {
         message = `Hi! I want to order Deal 1 (2 Bottles Oil). Price: 1950 PKR.`;
     } else if (productName === 'Deal 3 Bottles') {
-        message = `Hi! I want to order Deal 2 (3 Bottles Oil). Price: 1900 PKR.`;
+        message = `Hi! I want to order Deal 2 (3 Bottles Oil). Price: 2950 PKR.`;
     } else if (productName === 'Deal 2x50ml') {
         message = `Hi! I want to order Deal 3 (2 x 50ml Bottles). Price: 850 PKR.`;
     }
@@ -122,7 +122,7 @@ function buyNow(productName) {
     <select id="oil-qty" onchange="updatePrice('oil')">
         <option value="1">1 Bottle 150ml (1000 PKR)</option>
         <option value="2">2 Bottles 150ml (1950 PKR)</option>
-        <option value="3">3 Bottles 150ml (1900 PKR)</option>
+        <option value="3">3 Bottles 150ml (2950 PKR)</option>
         <option value="0.5">50 ML Bottle (450 PKR)</option>
     </select>
     <button class="buy-btn" onclick="buyNow('Hair Oil')">🛒 Buy Now</button>
